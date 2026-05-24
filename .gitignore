@@ -1,6 +1,7 @@
 ### Built classes and gradle files
 build/
-!.gradle/
+.gradle/
+build.gradle~
 
 ### IntelliJ IDEA ###
 .idea/
