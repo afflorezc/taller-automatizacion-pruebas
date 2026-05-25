@@ -1,9 +1,24 @@
 Feature: I as an user, want to register into the platform to can buy
 
-    Scenario: Sucessful registration
+    Background:
+        Given 
+
+    Scenario Outline: Sucessful registration
         Given I am in the Signup page
-        When I enter the signup information
+        When I enter the signup information:
+            | firstName           | <firstName>           |
+            | lastName            | <lastName>            | 
+            | password            | <password>            |
+            | gender              | <gender>               |
+            | dateOfBirth         | <dateOfBirth>         |
         Then I can see a welcome message
+
+        Examples: 
+            | <firstName> | <lastName> | <password>     | <gender> | <dateOfBirth> | 
+            | Katerin     | Montoya    | kate&you1485!  |   F     | 2005-11-04    |
+            | Andres      | Correa     | grand_Pass84$  |   M     | 2000-06-17    |
+            | Emily       | Gonzalez   | 3m1lyPassword# |   F     | 2006-07-20    |
+            | Camilo      | Torres     | ki3npass?-me   |   M     | 2004-09-15    | 
 
     Scenario: Failed registration due to the email already exists
         Given I am in the Signup page
