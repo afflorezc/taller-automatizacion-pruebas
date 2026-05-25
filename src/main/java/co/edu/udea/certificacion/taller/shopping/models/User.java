@@ -18,8 +18,8 @@ public class User {
     private String password;
     private Gender gender;
     private LocalDate dateOfBirth;
-    private boolean signUpForNewsLetter;
-    private boolean specialOffers;
+    private Boolean signUpForNewsLetter;
+    private Boolean specialOffers;
     private String companyName;
     private String address;
     private String address2;

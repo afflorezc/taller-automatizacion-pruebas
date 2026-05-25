@@ -17,7 +17,10 @@ public class UserBuilder {
             user.setAddress2(RandomValues.randomAddress());
         }
 
-        user.setCompanyName(RandomValues.randomCompany());
+        if (Math.random() < 0.5){
+            user.setCompanyName(RandomValues.randomCompany());
+        }
+
         user.setMobileNumber(RandomValues.randomMobilePhone());
         user.setLocationData(Location.randomLocation());
         user.setSignUpForNewsLetter(RandomValues.randomBooleanValue());

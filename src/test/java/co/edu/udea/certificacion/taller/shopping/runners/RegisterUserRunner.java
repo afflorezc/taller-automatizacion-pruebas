@@ -4,10 +4,11 @@ import io.cucumber.junit.CucumberOptions;
 import net.serenitybdd.cucumber.CucumberWithSerenity;
 import org.junit.runner.RunWith;
 
+
 @RunWith(CucumberWithSerenity.class)
 @CucumberOptions(
         features = "src/test/resources/features/register_user.feature",
-        glue = "co.edu.udea.certificacion.taller.stepdefinitions",
+        glue = "co.edu.udea.certificacion.taller.shopping.stepdefinitions",
         snippets = CucumberOptions.SnippetType.CAMELCASE
 )
 public class RegisterUserRunner {}
