@@ -20,6 +20,5 @@ public class SignUpLoginPage extends PageObject{
     
     public static final Target SIGN_UP_BUTTON = Target.the(
         "Signup button")
-        .located(By.xpath("//*[@id=\"form\"]/div/div/div[3]/div/form/input[3]"));
-
+        .located(By.xpath("//*[@id=\"form\"]/div/div/div[3]/div/form/button"));
 }
