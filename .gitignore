@@ -1,7 +1,11 @@
-### Built classes and gradle files
+### Built classes and gradle cached files
 build/
 .gradle/
+history/
 build.gradle~
+
+### Target Serenity
+target/
 
 ### IntelliJ IDEA ###
 .idea/
