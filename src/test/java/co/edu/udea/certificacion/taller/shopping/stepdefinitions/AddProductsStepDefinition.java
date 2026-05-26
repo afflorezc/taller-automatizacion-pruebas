@@ -1,10 +1,12 @@
 package co.edu.udea.certificacion.taller.shopping.stepdefinitions;
 
 import co.edu.udea.certificacion.taller.shopping.interactions.EnterTheQuantity;
+import co.edu.udea.certificacion.taller.shopping.interactions.RemoveInteractions;
 import co.edu.udea.certificacion.taller.shopping.models.User;
 import co.edu.udea.certificacion.taller.shopping.models.UserBuilder;
 import co.edu.udea.certificacion.taller.shopping.models.enums.Gender;
 import co.edu.udea.certificacion.taller.shopping.questions.ValidateElementsOnCart;
+import co.edu.udea.certificacion.taller.shopping.questions.ValidateQuantityOfProduct;
 import co.edu.udea.certificacion.taller.shopping.tasks.EnterThe;
 import co.edu.udea.certificacion.taller.shopping.tasks.NavigateTo;
 import co.edu.udea.certificacion.taller.shopping.tasks.OpenThe;
@@ -55,6 +57,7 @@ public class AddProductsStepDefinition {
     public void iAmALoggedUser() {
         client.attemptsTo(OpenThe.browser());
         client.attemptsTo(NavigateTo.signupPage());
+        client.attemptsTo(RemoveInteractions.removeAdds());
 
         User user = UserBuilder.defaultUser().build();
 
@@ -71,15 +74,18 @@ public class AddProductsStepDefinition {
     @Given("I am in the products page")
     public void iAmInTheProductsPage() {
         client.attemptsTo(NavigateTo.productsPage());
+        client.attemptsTo(RemoveInteractions.removeAdds());
     }
 
     @When("I add {int} different products to cart")
     public void iAddDifferentProductsToCart(int quantity){
         List<WebElementFacade> buttons = ProductsPage.ALL_BUY_BUTTONS.resolveAllFor(client);
+        client.attemptsTo(RemoveInteractions.removeAdds());
 
         for(int i=0; i<quantity; i++) {
             WebElementFacade product = RandomValues.randomItem(buttons);
 
+            client.attemptsTo(RemoveInteractions.removeAdds());
             client.attemptsTo(Click.on(product));
             client.attemptsTo(Click.on(CONTINUE_SHOPPING_BUTTON));
 
@@ -90,6 +96,7 @@ public class AddProductsStepDefinition {
     @Then("I can see the {int} different products in the cart")
     public void thenICanSeeTheQuantityDifferentProductsInTheCart(int quantity){
         client.attemptsTo(NavigateTo.shoppingCart());
+        client.attemptsTo(RemoveInteractions.removeAdds());
 
         GivenWhenThen.then(client).should(seeThat(ValidateElementsOnCart.thereAreNElementsOnCar(), equalTo(quantity)));
     }
@@ -103,15 +110,18 @@ public class AddProductsStepDefinition {
     @Given("I have selected a product")
     public void iHaveSelectedAProduct(){
         client.attemptsTo(NavigateTo.productsPage());
+        client.attemptsTo(RemoveInteractions.removeAdds());
 
         List<WebElementFacade> buttons = ProductsPage.ALL_VIEW_PRODUCT_BUTTONS.resolveAllFor(client);
 
         WebElementFacade button = RandomValues.randomItem(buttons);
 
         client.attemptsTo(Click.on(button));
+        client.attemptsTo(RemoveInteractions.removeAdds());
     }
     @When("I change the quantity of a product to {int}")
     public void iChangeTheQuantityOfAProductToAQuantity(int quantity){
+        client.attemptsTo(RemoveInteractions.removeAdds());
         client.attemptsTo(EnterTheQuantity.ofProducts(quantity));
     }
 
@@ -125,7 +135,7 @@ public class AddProductsStepDefinition {
     public void iSeeTheProductAndCorrectQuantityInTheCart(int quantity){
         client.attemptsTo(NavigateTo.shoppingCart());
 
-        GivenWhenThen.then(client).should(seeThat(ValidateElementsOnCart.thereAreNElementsOnCar(), equalTo(quantity)));
+        GivenWhenThen.then(client).should(seeThat(ValidateQuantityOfProduct.inTheCart() , equalTo(quantity)));
     }
 
 /*
@@ -134,14 +144,16 @@ public class AddProductsStepDefinition {
     When I add a product to cart <quantity> times
     Then I can see the product and correct quantity in the cart
 */
-    @When("I add a product to cart <quantity> times")
-    public void iAddAProductToCartAQuantityOfTimes(){
+    @When("I add a product to cart {int} times")
+    public void iAddAProductToCartAQuantityOfTimes(int quantity){
+        List<WebElementFacade> buttons = ProductsPage.ALL_BUY_BUTTONS.resolveAllFor(client);
 
-    }
+        WebElementFacade product = RandomValues.randomItem(buttons);
 
-    @Then("I can see the product and correct quantity in the cart")
-    public void iCanSeeTheProductAndCorrectQuantityInTheCart(){
-
+        for(int i=0; i<quantity; i++){
+            client.attemptsTo(Click.on(product));
+            client.attemptsTo(Click.on(CONTINUE_SHOPPING_BUTTON));
+        }
     }
 
 }

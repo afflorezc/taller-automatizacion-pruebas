@@ -11,7 +11,8 @@ public class RemoveInteractions implements Interaction{
     public <T extends Actor> void performAs(T actor) {
         actor.attemptsTo(
             Evaluate.javascript(
-        "document.querySelectorAll('iframe').forEach(e => e.remove())"
+        "document.querySelectorAll('iframe').forEach(e => e.remove());" +
+                "document.querySelectorAll('ins.adsbygoogle').forEach(e => e.remove());"
             )
         );
     }
