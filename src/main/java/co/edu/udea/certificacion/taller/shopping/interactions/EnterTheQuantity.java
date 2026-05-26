@@ -1,14 +1,10 @@
 package co.edu.udea.certificacion.taller.shopping.interactions;
 
-import co.edu.udea.certificacion.taller.shopping.models.InputDate;
 import net.serenitybdd.screenplay.Actor;
 import net.serenitybdd.screenplay.Interaction;
 import net.serenitybdd.screenplay.Tasks;
-import net.serenitybdd.screenplay.actions.Click;
 import net.serenitybdd.screenplay.actions.Enter;
-import net.serenitybdd.screenplay.actions.SelectFromOptions;
 
-import static co.edu.udea.certificacion.taller.shopping.userinterfaces.RegistrationDetailsPage.*;
 import static co.edu.udea.certificacion.taller.shopping.userinterfaces.SelectProductPage.*;
 
 public class EnterTheQuantity  implements Interaction {

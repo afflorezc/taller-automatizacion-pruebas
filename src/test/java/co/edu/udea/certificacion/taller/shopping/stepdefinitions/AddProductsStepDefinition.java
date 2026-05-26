@@ -4,7 +4,6 @@ import co.edu.udea.certificacion.taller.shopping.interactions.EnterTheQuantity;
 import co.edu.udea.certificacion.taller.shopping.interactions.RemoveInteractions;
 import co.edu.udea.certificacion.taller.shopping.models.User;
 import co.edu.udea.certificacion.taller.shopping.models.UserBuilder;
-import co.edu.udea.certificacion.taller.shopping.models.enums.Gender;
 import co.edu.udea.certificacion.taller.shopping.questions.ValidateElementsOnCart;
 import co.edu.udea.certificacion.taller.shopping.questions.ValidateQuantityOfProduct;
 import co.edu.udea.certificacion.taller.shopping.tasks.EnterThe;
@@ -12,7 +11,6 @@ import co.edu.udea.certificacion.taller.shopping.tasks.NavigateTo;
 import co.edu.udea.certificacion.taller.shopping.tasks.OpenThe;
 import co.edu.udea.certificacion.taller.shopping.userinterfaces.ProductsPage;
 import co.edu.udea.certificacion.taller.shopping.utils.RandomValues;
-import io.cucumber.datatable.DataTable;
 import io.cucumber.java.Before;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
@@ -32,11 +30,8 @@ import static co.edu.udea.certificacion.taller.shopping.userinterfaces.ProductsP
 import static co.edu.udea.certificacion.taller.shopping.userinterfaces.SelectProductPage.ADD_PRODUCT_TO_CART_BUTTON;
 import static co.edu.udea.certificacion.taller.shopping.userinterfaces.SelectProductPage.CONFIRM_PRODUCT_ON_CART;
 import static org.hamcrest.Matchers.equalTo;
-import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
-import java.util.Random;
+
 
 import static net.serenitybdd.screenplay.GivenWhenThen.seeThat;
 

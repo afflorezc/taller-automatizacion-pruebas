@@ -4,7 +4,6 @@ import net.serenitybdd.screenplay.Actor;
 import net.serenitybdd.screenplay.Question;
 import net.serenitybdd.screenplay.abilities.BrowseTheWeb;
 
-import static co.edu.udea.certificacion.taller.shopping.userinterfaces.CreatedAccountPage.CREATED_ACCOUNT_TEXT;
 import static co.edu.udea.certificacion.taller.shopping.userinterfaces.ShoppingCartPage.QUANTITY_OF_FIRST_PRODUCT;
 
 public class ValidateQuantityOfProduct implements Question<Integer> {

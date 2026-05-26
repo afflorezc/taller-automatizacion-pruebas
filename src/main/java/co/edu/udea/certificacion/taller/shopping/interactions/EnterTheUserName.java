@@ -1,7 +1,6 @@
 package co.edu.udea.certificacion.taller.shopping.interactions;
 
 import static co.edu.udea.certificacion.taller.shopping.userinterfaces.SignUpLoginPage.*;
-import static co.edu.udea.certificacion.taller.shopping.userinterfaces.RegistrationDetailsPage.*;
 
 import net.serenitybdd.screenplay.Actor;
 import net.serenitybdd.screenplay.Interaction;
