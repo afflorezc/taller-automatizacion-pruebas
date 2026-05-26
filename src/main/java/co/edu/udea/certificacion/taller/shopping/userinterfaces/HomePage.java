@@ -17,7 +17,7 @@ public class HomePage extends PageObject{
     
     public static final Target CART_LINK = Target.the(
         "Navigation bar cart link")
-        .locatedBy("//*[@id=\"header\"]/div/div/div/div[2]/div/ul/li[3]/a)");
+        .located(By.xpath("//*[@id=\"header\"]/div/div/div/div[2]/div/ul/li[3]/a"));
 
     public static final Target PRODUCTS_LINK = Target.the(
         "Navigation bar products link")

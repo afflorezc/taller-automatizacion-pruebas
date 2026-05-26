@@ -18,13 +18,13 @@ Feature: I as an user, want to add products to the cart to can buy
         Given I have selected a product
         When I change the quantity of a product to <quantity>
         And add the product to cart
-        Then I see the product and correct quantity in the cart
+        Then I see the product <quantity> times in the cart
 
     Examples:
-        |<quantity>|
-        |2         |
-        |4         |
-        |6         |
+        |quantity|
+        |2       |
+        |4       |
+        |6       |
 
     
     Scenario Outline: Add multiple times the same product
@@ -33,7 +33,7 @@ Feature: I as an user, want to add products to the cart to can buy
         Then I can see the product and correct quantity in the cart
 
     Examples:
-        |<quantity>|
-        |2         |
-        |4         |
-        |6         |
+        |quantity|
+        |2       |
+        |4       |
+        |6       |
