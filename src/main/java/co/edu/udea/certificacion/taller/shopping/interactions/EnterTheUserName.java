@@ -11,9 +11,6 @@ import net.serenitybdd.screenplay.actions.Enter;
 import net.serenitybdd.screenplay.waits.WaitUntil;
 import static net.serenitybdd.screenplay.matchers.WebElementStateMatchers.isVisible;
 
-import co.edu.udea.certificacion.taller.shopping.exceptions.EmptyFieldsInSignUpException;
-
-
 public class EnterTheUserName implements Interaction{
 
     private final String name;

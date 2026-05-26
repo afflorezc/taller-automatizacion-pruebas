@@ -40,6 +40,7 @@ public class UserBuilder {
 
     public UserBuilder withFirstName(String firstName){
         user.setFirstName(firstName);
+        user.setEmail(RandomValues.randomEmail(user.getFirstName()));
         return this;
     }
 
@@ -61,6 +62,8 @@ public class UserBuilder {
     public UserBuilder withDateOfBirth(LocalDate dateOfBirth){
         if(dateOfBirth != null){
             user.setDateOfBirth(dateOfBirth);
+        } else{
+            user.setDateOfBirth(null);
         }
         return this;
     }

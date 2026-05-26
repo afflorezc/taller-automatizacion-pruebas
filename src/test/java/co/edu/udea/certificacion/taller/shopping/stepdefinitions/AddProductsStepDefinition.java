@@ -48,7 +48,7 @@ public class AddProductsStepDefinition {
     }
 
     @Given("I am a registed user")
-    public void iAmALoggedUser(DataTable userInfo) {
+    public void iAmALoggedUser() {
         client.attemptsTo(OpenThe.browser());
         client.attemptsTo(NavigateTo.signupPage());
 
