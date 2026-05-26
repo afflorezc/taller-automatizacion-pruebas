@@ -16,5 +16,5 @@ public class ShoppingCartPage extends PageObject {
 
     public static final Target QUANTITY_OF_FIRST_PRODUCT =
             Target.the("Elemento que indica la cantidad del producto")
-                    .located(By.xpath("//*[@id=\"product-2\"]/td[4]/button"));
+                    .located(By.cssSelector("tbody tr .cart_quantity button"));
 }
