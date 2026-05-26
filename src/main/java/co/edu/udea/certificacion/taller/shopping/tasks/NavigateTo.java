@@ -1,6 +1,9 @@
 package co.edu.udea.certificacion.taller.shopping.tasks;
 
 import static co.edu.udea.certificacion.taller.shopping.userinterfaces.HomePage.*;
+
+import co.edu.udea.certificacion.taller.shopping.interactions.RemoveInteractions;
+
 import static co.edu.udea.certificacion.taller.shopping.userinterfaces.CreatedAccountPage.*;
 
 import net.serenitybdd.screenplay.Actor;
@@ -16,6 +19,7 @@ public class NavigateTo implements Task{
     @Override
     public <T extends Actor> void performAs(T actor) {
         actor.attemptsTo(Click.on(link));
+        actor.attemptsTo(RemoveInteractions.removeAdds());
     }
 
     public static NavigateTo signupPage(){

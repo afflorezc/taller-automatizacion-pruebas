@@ -55,7 +55,9 @@ public class UserBuilder {
     }
 
     public UserBuilder withDateOfBirth(LocalDate dateOfBirth){
-        user.setDateOfBirth(dateOfBirth);
+        if(dateOfBirth != null){
+            user.setDateOfBirth(dateOfBirth);
+        }
         return this;
     }
 

@@ -26,7 +26,19 @@ Feature: I as an user, want to register into the platform to can buy
         When I enter an existing email address
         Then I see a message that such email is already registered
     
-    Scenario: Failed registration due to unfilled fields
+    Scenario Outline: Failed registration due to unfilled fields
         Given I am in the Signup page
-        When I enter incomplete sigunp information
+        When I enter incomplete sigunp information:
+            | firstName           | <firstName>           |
+            | lastName            | <lastName>            | 
+            | password            | <password>            |
+            | gender              | <gender>              |
+            | dateOfBirth         | <dateOfBirth>         |
         Then I can see a warning in the first empty field
+
+         Examples: 
+            | firstName | lastName | password       | gender | dateOfBirth | 
+            |           | Montoya  | monto&you1485! |   F    | 2005-11-04  |
+            | Santiago  |          | grand_Pass23$  |   M    | 2000-06-17  |
+            | Vanessa   | Bedoya   |                |   F    | 2006-07-20  |
+            | Brayan    | Galinde  | ki3npassW0rd?  |   M    |             | 

@@ -8,9 +8,12 @@ import org.openqa.selenium.WebDriver;
 import co.edu.udea.certificacion.taller.shopping.models.User;
 import co.edu.udea.certificacion.taller.shopping.models.UserBuilder;
 import co.edu.udea.certificacion.taller.shopping.models.enums.Gender;
+import co.edu.udea.certificacion.taller.shopping.questions.ActiveFieldHasValidation;
 import co.edu.udea.certificacion.taller.shopping.questions.ValidateCreatedAccount;
+import co.edu.udea.certificacion.taller.shopping.questions.ValidateEmail;
 import co.edu.udea.certificacion.taller.shopping.questions.ValidateLoggedIn;
 import co.edu.udea.certificacion.taller.shopping.tasks.EnterThe;
+import co.edu.udea.certificacion.taller.shopping.tasks.LogOut;
 import co.edu.udea.certificacion.taller.shopping.tasks.NavigateTo;
 import co.edu.udea.certificacion.taller.shopping.tasks.OpenThe;
 import io.cucumber.datatable.DataTable;
@@ -52,12 +55,19 @@ public class RegisterUserStepDefinition {
         
         Map<String, String> data = signupInformation.asMap();
 
+        LocalDate birthDate;
+        if(!data.get("dateOfBirth").isEmpty()){
+            birthDate = LocalDate.parse(data.get("dateOfBirth"));
+        } else {
+            birthDate = null;
+        }
+
         User user = UserBuilder.defaultUser()
                 .withFirstName(data.get("firstName"))
                 .withLastName(data.get("lastName"))
                 .withPassword(data.get("password"))
                 .withGender(Gender.valueOf(data.get("gender")))
-                .withDateOfBirth(LocalDate.parse(data.get("dateOfBirth")))
+                .withDateOfBirth(birthDate)
                 .build();
 
         client.attemptsTo(EnterThe.signupInformation(user));
@@ -77,21 +87,35 @@ public class RegisterUserStepDefinition {
 
     @When("I enter an existing email address")
     public void iEnterAnExistingEmailAddress() {
+        User existingUser = UserBuilder.defaultUser().build();
 
+        client.attemptsTo(EnterThe.signupInformation(existingUser));
+
+        client.attemptsTo(LogOut.theUser());
+
+        User user = UserBuilder.defaultUser().build();
+        user.setEmail(existingUser.getEmail());
+
+        client.attemptsTo(EnterThe.signupInformation(user));
     }
+
     @Then("I see a message that such email is already registered")
     public void iSeeAMessageThatSuchEmailIsAlreadyRegistered() {
-
+        GivenWhenThen.then(client)
+        .should(seeThat(ValidateEmail.alreadyInUse()));
     }
 
-    @When("I enter incomplete sigunp information")
-    public void iEnterIncompleteSigunpInformation() {
+    @When("I enter incomplete sigunp information:")
+    public void iEnterIncompleteSigunpInformation(DataTable signupInformation) {
+        iEnterTheSignupInformation(signupInformation);
 
     }
 
     @Then("I can see a warning in the first empty field")
     public void iCanSeeAWarningInTheFirstEmptyField() {
-
+        GivenWhenThen.then(client).should(
+            seeThat(ActiveFieldHasValidation.isInvalid())
+        );
     }
 
 }

@@ -5,6 +5,8 @@ import co.edu.udea.certificacion.taller.shopping.models.User;
 import co.edu.udea.certificacion.taller.shopping.models.enums.Gender;
 import static co.edu.udea.certificacion.taller.shopping.utils.DateManipulation.transformsDate;
 
+import co.edu.udea.certificacion.taller.shopping.exceptions.EmptyFieldsInSignUpException;
+
 import static co.edu.udea.certificacion.taller.shopping.userinterfaces.RegistrationDetailsPage.*;
 
 import net.serenitybdd.screenplay.Actor;
@@ -23,11 +25,14 @@ public class RegisterThe implements Interaction {
 
     @Override
     public <T extends Actor> void performAs(T actor) {
-
-        actor.attemptsTo(EnterTheUserName.ofClient(
-            this.user.getFirstName(),
-            this.user.getEmail()
-        ));
+        try{
+            actor.attemptsTo(EnterTheUserName.ofClient(
+                this.user.getFirstName(),
+                this.user.getEmail()
+            ));
+        }catch(EmptyFieldsInSignUpException e){
+            return;
+        }
 
         actor.attemptsTo(Click.on(
             this.user.getGender() == Gender.M
@@ -38,12 +43,14 @@ public class RegisterThe implements Interaction {
         actor.attemptsTo(Delay.betweenSteps());
         actor.attemptsTo(Enter.theValue(this.user.getPassword()).into(PASSWORD_FIELD));
         
-        InputDate birthDate = transformsDate(this.user.getDateOfBirth());
-        actor.attemptsTo(EnterTheBirthDate.ofUser(birthDate));
-
+        if(this.user.getDateOfBirth() != null){
+            InputDate birthDate = transformsDate(this.user.getDateOfBirth());
+            actor.attemptsTo(EnterTheBirthDate.ofUser(birthDate));
+        }
+            
         actor.attemptsTo(RegisterSubscriptions.forClient(
-            this.user.getSignUpForNewsLetter(),
-            this.user.getSpecialOffers()
+        this.user.getSignUpForNewsLetter(),
+        this.user.getSpecialOffers()
         ));
         
         actor.attemptsTo(EnterTheUser.personalInformation(
@@ -58,6 +65,7 @@ public class RegisterThe implements Interaction {
         actor.attemptsTo(Click.on(CREATE_ACCOUNT_BUTTON));
 
         actor.attemptsTo(RemoveInteractions.removeAdds());
+
     }
 
     public static RegisterThe client(User user){
