@@ -1,7 +1,7 @@
 Feature: I as an user, want to add products to the cart to can buy
 
     Background:
-        Given I am a registed user
+        Given I am a registered user
 
     Scenario Outline: Add various products
         Given I am in the products page

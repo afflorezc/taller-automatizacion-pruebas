@@ -17,8 +17,8 @@ Feature: I as an user, want to register into the platform to can buy
         Examples: 
             | firstName | lastName | password       | gender | dateOfBirth | 
            #| Katerin   | Montoya  | kate&you1485!  |   F    | 2005-11-04  |
-            | Andres    | Correa   | grand_Pass84$  |   M    | 2000-06-17  |
-           #| Emily     | Gonzalez | 3m1lyPassword# |   F    | 2006-07-20  |
+            #| Andres    | Correa   | grand_Pass84$  |   M    | 2000-06-17  |
+           | Emily     | Gonzalez | 3m1lyPassword# |   F    | 2006-07-20  |
            #| Camilo    | Torres   | ki3npass?-me   |   M    | 2004-09-15  | 
 
     Scenario: Failed registration due to the email already exists

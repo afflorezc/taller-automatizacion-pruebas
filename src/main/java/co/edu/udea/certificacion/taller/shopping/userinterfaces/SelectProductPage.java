@@ -11,8 +11,5 @@ public class SelectProductPage {
     public static final Target ADD_PRODUCT_TO_CART_BUTTON =
             Target.the("Boton de añadir el producto al carrito")
                     .located(By.xpath("/html/body/section/div/div/div[2]/div[2]/div[2]/div/span/button"));
-
-    public static final Target CONFIRM_PRODUCT_ON_CART =
-            Target.the("Boton de confirmación de añadir al carrito")
-                    .located(By.xpath("//*[@id=\"cartModal\"]/div/div/div[3]/button"));
-}
+                    
+}                                                   

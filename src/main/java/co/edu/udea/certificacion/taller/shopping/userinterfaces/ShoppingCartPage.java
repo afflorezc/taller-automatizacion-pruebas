@@ -1,9 +1,11 @@
 package co.edu.udea.certificacion.taller.shopping.userinterfaces;
 
 import net.thucydides.core.pages.PageObject;
+import net.serenitybdd.annotations.DefaultUrl;
 import net.serenitybdd.screenplay.targets.Target;
 import org.openqa.selenium.By;
 
+@DefaultUrl("/view-cart")
 public class ShoppingCartPage extends PageObject {
 
     public static final Target SHOPPING_CART_TEXT = Target.the(
