@@ -1,11 +1,16 @@
 package co.edu.udea.certificacion.taller.shopping.utils;
 
-import java.util.List;
-import java.util.Random;
-import java.util.UUID;
+import co.edu.udea.certificacion.taller.shopping.models.enums.Gender;
+
+import java.time.LocalDate;
+import java.util.*;
 import java.util.concurrent.ThreadLocalRandom;
 
 public class RandomValues {
+    public static final List<String> RANDOM_MALE_NAMES =  new ArrayList<>(Arrays.asList("Juan", "Pedro", "Lucas", "Ernesto", "Sergio", "Samuel"));
+    public static final List<String> RANDOM_FEMALE_NAMES =  new ArrayList<>(Arrays.asList("Ana", "Maria", "Karen", "Luisa", "Camila", "Catalina"));
+    public static final List<String> RANDOM_LAST_NAMES =  new ArrayList<>(Arrays.asList("Gomez", "Lopez", "Alvarez", "Perez", "Jimenez", "Castillo"));
+
 
     public static <T> T randomItem(List<T> list) {
 
@@ -41,6 +46,36 @@ public class RandomValues {
 
         return "3"
                 + (100000000 + new Random().nextInt(899999999));
+    }
+
+    public static String randomName(Gender gender){
+        if (gender == Gender.M){
+            return randomItem(RANDOM_MALE_NAMES);
+        }
+        return randomItem(RANDOM_FEMALE_NAMES);
+    }
+
+    public static String randomLastName(){
+        return randomItem(RANDOM_LAST_NAMES);
+    }
+
+    public static Gender randomGender(){
+        ThreadLocalRandom random = ThreadLocalRandom.current();
+        int randInt = random.nextInt(2);
+        if (randInt==0){
+            return Gender.M;
+        }
+        return Gender.F;
+    }
+
+    public static LocalDate randomBirthDate(){
+        ThreadLocalRandom random = ThreadLocalRandom.current();
+        int randomYear = random.nextInt(1950,2007);
+        int randomMonth = random.nextInt(1,13);
+        int randomDay = random.nextInt(1,27);
+        LocalDate randomDate = LocalDate.of(randomYear,randomMonth,randomDay);
+
+        return randomDate;
     }
 
     public static String randomEmail(String name) {

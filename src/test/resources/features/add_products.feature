@@ -1,20 +1,39 @@
 Feature: I as an user, want to add products to the cart to can buy
 
-    Background
-        Given I am a logged user
+    Background:
+        Given I am a registed user
 
-    Scenario: Add various products
+    Scenario Outline: Add various products
         Given I am in the products page
-        When I add various products to cart
-        Then I can see all the products in the cart 
+        When I add <quantity> different products to cart
+        Then I can see the <quantity> different products in the cart
 
-    Scenario: Modify the quantity for a product
+    Examples:
+        |<quantity>|
+        |1         |
+        |3         |
+        |5         |
+
+    Scenario Outline: Modify the quantity for a product
         Given I have selected a product
-        When I change the quantity of the product
+        When I change the quantity of a product to <quantity>
         And add the product to cart
         Then I see the product and correct quantity in the cart
+
+    Examples:
+        |<quantity>|
+        |2         |
+        |4         |
+        |6         |
+
     
-    Scenario: Add multiple times the same product
+    Scenario Outline: Add multiple times the same product
         Given I am in the products page
-        When I add the same product to cart multiple times
+        When I add a product to cart <quantity> times
         Then I can see the product and correct quantity in the cart
+
+    Examples:
+        |<quantity>|
+        |2         |
+        |4         |
+        |6         |

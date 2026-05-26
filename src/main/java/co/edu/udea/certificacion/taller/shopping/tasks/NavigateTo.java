@@ -28,4 +28,14 @@ public class NavigateTo implements Task{
         return Tasks.instrumented(NavigateTo.class);
     }
 
+    public static NavigateTo productsPage(){
+        link = PRODUCTS_LINK;
+        return Tasks.instrumented(NavigateTo.class);
+    }
+
+    public static NavigateTo shoppingCart(){
+        link = CART_LINK;
+        return Tasks.instrumented(NavigateTo.class);
+    }
+
 }
