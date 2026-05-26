@@ -86,4 +86,8 @@ public class RandomValues {
                 + "@udea.edu.co";
     }
 
+    public static String randomPassword(){
+        return UUID.randomUUID().toString().substring(0,8);
+    }
+
 }
