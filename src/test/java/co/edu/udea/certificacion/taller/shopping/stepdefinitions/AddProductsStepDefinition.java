@@ -1,5 +1,6 @@
 package co.edu.udea.certificacion.taller.shopping.stepdefinitions;
 
+import co.edu.udea.certificacion.taller.shopping.interactions.EnterTheQuantity;
 import co.edu.udea.certificacion.taller.shopping.models.User;
 import co.edu.udea.certificacion.taller.shopping.models.UserBuilder;
 import co.edu.udea.certificacion.taller.shopping.models.enums.Gender;
@@ -26,6 +27,8 @@ import net.serenitybdd.screenplay.actors.OnlineCast;
 import org.openqa.selenium.WebDriver;
 
 import static co.edu.udea.certificacion.taller.shopping.userinterfaces.ProductsPage.CONTINUE_SHOPPING_BUTTON;
+import static co.edu.udea.certificacion.taller.shopping.userinterfaces.SelectProductPage.ADD_PRODUCT_TO_CART_BUTTON;
+import static co.edu.udea.certificacion.taller.shopping.userinterfaces.SelectProductPage.CONFIRM_PRODUCT_ON_CART;
 import static org.hamcrest.Matchers.equalTo;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -99,21 +102,30 @@ public class AddProductsStepDefinition {
 */
     @Given("I have selected a product")
     public void iHaveSelectedAProduct(){
+        client.attemptsTo(NavigateTo.productsPage());
 
+        List<WebElementFacade> buttons = ProductsPage.ALL_VIEW_PRODUCT_BUTTONS.resolveAllFor(client);
+
+        WebElementFacade button = RandomValues.randomItem(buttons);
+
+        client.attemptsTo(Click.on(button));
     }
-    @When("I change the quantity of a product to <quantity>")
-    public void iChangeTheQuantityOfAProductToAQuantity(){
-
+    @When("I change the quantity of a product to {int}")
+    public void iChangeTheQuantityOfAProductToAQuantity(int quantity){
+        client.attemptsTo(EnterTheQuantity.ofProducts(quantity));
     }
 
     @And("add the product to cart")
     public void addTheProductToCart(){
-
+        client.attemptsTo(Click.on(ADD_PRODUCT_TO_CART_BUTTON));
+        client.attemptsTo(Click.on(CONFIRM_PRODUCT_ON_CART));
     }
 
-    @Then("I see the product and correct quantity in the cart")
-    public void iSeeTheProductAndCorrectQuantityInTheCart(){
+    @Then("I see the product {int} times in the cart")
+    public void iSeeTheProductAndCorrectQuantityInTheCart(int quantity){
+        client.attemptsTo(NavigateTo.shoppingCart());
 
+        GivenWhenThen.then(client).should(seeThat(ValidateElementsOnCart.thereAreNElementsOnCar(), equalTo(quantity)));
     }
 
 /*
