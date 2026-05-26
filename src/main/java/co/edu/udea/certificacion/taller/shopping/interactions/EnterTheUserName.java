@@ -35,11 +35,12 @@ public class EnterTheUserName implements Interaction{
         if(this.name.isEmpty() || this.email.isEmpty()){
             return;
         }
-
-        WaitUntil.the(
-            PASSWORD_FIELD, 
-            isVisible()
-        ).forNoMoreThan(10).seconds();
+        actor.attemptsTo(
+            WaitUntil.the(
+                PASSWORD_FIELD, 
+                isVisible()
+            ).forNoMoreThan(10).seconds()
+        );
 
         actor.attemptsTo(RemoveInteractions.removeAdds());
     }

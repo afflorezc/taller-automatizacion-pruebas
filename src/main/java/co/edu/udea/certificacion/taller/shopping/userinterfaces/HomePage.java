@@ -25,8 +25,8 @@ public class HomePage extends PageObject{
 
     public static final Target LOGOUT_LINK = Target.the(
         "Navigation bar Logout link when logged")
-        .locatedBy("//*[@id=\"header\"]/div/div/div/div[2]/div/ul/li[4]/a");
-    
+        .located(By.xpath("//*[@id=\"header\"]/div/div/div/div[2]/div/ul/li[4]/a"));
+
     public static final Target DELETE_ACCOUNT_LINK = Target.the(
         "Navigation bar delete account link when logged")
         .locatedBy("//*[@id=\"header\"]/div/div/div/div[2]/div/ul/li[5]/a");
@@ -35,5 +35,4 @@ public class HomePage extends PageObject{
     public static final Target LOGGED_AS_TEXT = Target.the(
         "Navigation bar Logged as text when logged")
         .locatedBy("//*[@id=\"header\"]/div/div/div/div[2]/div/ul/li[10]/a");
-
 }

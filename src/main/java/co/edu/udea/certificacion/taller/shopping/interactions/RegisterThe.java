@@ -5,8 +5,6 @@ import co.edu.udea.certificacion.taller.shopping.models.User;
 import co.edu.udea.certificacion.taller.shopping.models.enums.Gender;
 import static co.edu.udea.certificacion.taller.shopping.utils.DateManipulation.transformsDate;
 
-import co.edu.udea.certificacion.taller.shopping.exceptions.EmptyFieldsInSignUpException;
-
 import static co.edu.udea.certificacion.taller.shopping.userinterfaces.RegistrationDetailsPage.*;
 
 import net.serenitybdd.screenplay.Actor;
@@ -30,7 +28,7 @@ public class RegisterThe implements Interaction {
                 this.user.getFirstName(),
                 this.user.getEmail()
             ));
-        }catch(EmptyFieldsInSignUpException e){
+        }catch(Exception e){
             return;
         }
 

@@ -90,7 +90,7 @@ public class RegisterUserStepDefinition {
         User existingUser = UserBuilder.defaultUser().build();
 
         client.attemptsTo(EnterThe.signupInformation(existingUser));
-
+        client.attemptsTo(NavigateTo.loggedInPage());
         client.attemptsTo(LogOut.theUser());
 
         User user = UserBuilder.defaultUser().build();
