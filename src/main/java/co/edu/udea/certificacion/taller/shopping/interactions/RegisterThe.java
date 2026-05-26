@@ -12,6 +12,8 @@ import net.serenitybdd.screenplay.Interaction;
 import net.serenitybdd.screenplay.Tasks;
 import net.serenitybdd.screenplay.actions.Click;
 import net.serenitybdd.screenplay.actions.Enter;
+import net.serenitybdd.screenplay.waits.WaitUntil;
+import static net.serenitybdd.screenplay.matchers.WebElementStateMatchers.isVisible;
 
 public class RegisterThe implements Interaction {
 
@@ -31,6 +33,15 @@ public class RegisterThe implements Interaction {
         }catch(Exception e){
             return;
         }
+
+        actor.attemptsTo(
+            WaitUntil.the(
+                PASSWORD_FIELD, 
+                isVisible()
+            ).forNoMoreThan(10).seconds()
+        );
+
+        actor.attemptsTo(RemoveInteractions.removeAdds());
 
         actor.attemptsTo(Click.on(
             this.user.getGender() == Gender.M

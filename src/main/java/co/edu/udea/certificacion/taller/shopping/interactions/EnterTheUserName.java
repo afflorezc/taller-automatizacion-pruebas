@@ -8,8 +8,6 @@ import net.serenitybdd.screenplay.Interaction;
 import net.serenitybdd.screenplay.Tasks;
 import net.serenitybdd.screenplay.actions.Click;
 import net.serenitybdd.screenplay.actions.Enter;
-import net.serenitybdd.screenplay.waits.WaitUntil;
-import static net.serenitybdd.screenplay.matchers.WebElementStateMatchers.isVisible;
 
 public class EnterTheUserName implements Interaction{
 
@@ -31,18 +29,6 @@ public class EnterTheUserName implements Interaction{
 
         actor.attemptsTo(Delay.betweenSteps());
         actor.attemptsTo(Click.on(SIGN_UP_BUTTON));
-
-        if(this.name.isEmpty() || this.email.isEmpty()){
-            return;
-        }
-        actor.attemptsTo(
-            WaitUntil.the(
-                PASSWORD_FIELD, 
-                isVisible()
-            ).forNoMoreThan(10).seconds()
-        );
-
-        actor.attemptsTo(RemoveInteractions.removeAdds());
     }
 
     public static EnterTheUserName ofClient(String name, String email){

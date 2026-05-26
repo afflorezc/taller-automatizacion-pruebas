@@ -1,21 +1,20 @@
 package co.edu.udea.certificacion.taller.shopping.stepdefinitions;
 
-import java.time.LocalDate;
-import java.util.Map;
-
 import org.openqa.selenium.WebDriver;
 
 import co.edu.udea.certificacion.taller.shopping.models.User;
 import co.edu.udea.certificacion.taller.shopping.models.UserBuilder;
-import co.edu.udea.certificacion.taller.shopping.models.enums.Gender;
+import static co.edu.udea.certificacion.taller.shopping.utils.UserFromDataTable.*;
 import co.edu.udea.certificacion.taller.shopping.questions.ActiveFieldHasValidation;
 import co.edu.udea.certificacion.taller.shopping.questions.ValidateCreatedAccount;
 import co.edu.udea.certificacion.taller.shopping.questions.ValidateEmail;
 import co.edu.udea.certificacion.taller.shopping.questions.ValidateLoggedIn;
+import co.edu.udea.certificacion.taller.shopping.tasks.EnterBasicSignUp;
 import co.edu.udea.certificacion.taller.shopping.tasks.EnterThe;
 import co.edu.udea.certificacion.taller.shopping.tasks.LogOut;
 import co.edu.udea.certificacion.taller.shopping.tasks.NavigateTo;
 import co.edu.udea.certificacion.taller.shopping.tasks.OpenThe;
+import co.edu.udea.certificacion.taller.shopping.utils.RandomValues;
 import io.cucumber.datatable.DataTable;
 import io.cucumber.java.Before;
 import io.cucumber.java.en.And;
@@ -53,23 +52,7 @@ public class RegisterUserStepDefinition {
     @When("I enter the signup information:")
     public void iEnterTheSignupInformation(DataTable signupInformation) {
         
-        Map<String, String> data = signupInformation.asMap();
-
-        LocalDate birthDate;
-        if(!data.get("dateOfBirth").isEmpty()){
-            birthDate = LocalDate.parse(data.get("dateOfBirth"));
-        } else {
-            birthDate = null;
-        }
-
-        User user = UserBuilder.defaultUser()
-                .withFirstName(data.get("firstName"))
-                .withLastName(data.get("lastName"))
-                .withPassword(data.get("password"))
-                .withGender(Gender.valueOf(data.get("gender")))
-                .withDateOfBirth(birthDate)
-                .build();
-
+        User user = createUser(signupInformation);
         client.attemptsTo(EnterThe.signupInformation(user));
     }
 
@@ -93,10 +76,10 @@ public class RegisterUserStepDefinition {
         client.attemptsTo(NavigateTo.loggedInPage());
         client.attemptsTo(LogOut.theUser());
 
-        User user = UserBuilder.defaultUser().build();
-        user.setEmail(existingUser.getEmail());
+        String name = RandomValues.randomName(RandomValues.randomGender());
+        String email = existingUser.getEmail();
 
-        client.attemptsTo(EnterThe.signupInformation(user));
+        client.attemptsTo(EnterBasicSignUp.withExistingEmail(name, email));
     }
 
     @Then("I see a message that such email is already registered")
@@ -107,7 +90,14 @@ public class RegisterUserStepDefinition {
 
     @When("I enter incomplete sigunp information:")
     public void iEnterIncompleteSigunpInformation(DataTable signupInformation) {
-        iEnterTheSignupInformation(signupInformation);
+        User user = createUser(signupInformation);
+
+        if (user.getFirstName() == null || user.getEmail().isEmpty()){
+            client.attemptsTo(EnterBasicSignUp.withEmptyFields(
+                user.getFirstName(), user.getEmail()));
+        } else {
+            client.attemptsTo(EnterThe.signupInformation(user));
+        }
 
     }
 

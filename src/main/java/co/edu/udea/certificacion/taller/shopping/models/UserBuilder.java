@@ -70,7 +70,9 @@ public class UserBuilder {
     }
 
     public UserBuilder withEmail(String email){
-        user.setEmail(email);
+        if(!email.equals("any")){
+            user.setEmail(email);
+        }
         return this;
     }
 

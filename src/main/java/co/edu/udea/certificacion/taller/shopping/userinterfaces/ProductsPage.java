@@ -6,6 +6,10 @@ import org.openqa.selenium.By;
 
 public class ProductsPage extends PageObject {
 
+    public static final Target CATEGORY_TEXT = Target.the(
+        "Title for categories")
+        .locatedBy("/html/body/section[2]/div/div/div[1]/div/h2");
+        
     public static final Target ALL_BUY_BUTTONS =
             Target.the("Todos los botones de compra")
                     .located(By.cssSelector(".single-products > .productinfo a"));

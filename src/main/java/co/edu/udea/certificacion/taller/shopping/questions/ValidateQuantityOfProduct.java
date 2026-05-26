@@ -6,9 +6,10 @@ import net.serenitybdd.screenplay.abilities.BrowseTheWeb;
 
 import static co.edu.udea.certificacion.taller.shopping.userinterfaces.CreatedAccountPage.CREATED_ACCOUNT_TEXT;
 
-public class ValidateQuantityOfProduct implements Question<Boolean> {
+public class ValidateQuantityOfProduct implements Question<Integer> {
+
     @Override
-    public int answeredBy(Actor actor) {
+    public Integer answeredBy(Actor actor) {
         //int quantity = BrowseTheWeb.as(actor).find().getText();
         return 0;
     }

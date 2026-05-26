@@ -10,9 +10,11 @@ public class RemoveInteractions implements Interaction{
     @Override
     public <T extends Actor> void performAs(T actor) {
         actor.attemptsTo(
-            Evaluate.javascript(
-        "document.querySelectorAll('iframe').forEach(e => e.remove())"
-            )
+            Evaluate.javascript("""
+            document.querySelectorAll(
+                'iframe, .adsbygoogle, .advertisement, .grippy-host'
+            ).forEach(el => el.remove());
+            """)
         );
     }
 
