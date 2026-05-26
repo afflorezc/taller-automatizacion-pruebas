@@ -23,6 +23,7 @@ public class UserBuilder {
 
         user.setGender(RandomValues.randomGender());
         user.setFirstName(RandomValues.randomName(user.getGender()));
+        user.setPassword(RandomValues.randomPassword());
         user.setLastName(RandomValues.randomLastName());
         user.setMobileNumber(RandomValues.randomMobilePhone());
         user.setLocationData(Location.randomLocation());

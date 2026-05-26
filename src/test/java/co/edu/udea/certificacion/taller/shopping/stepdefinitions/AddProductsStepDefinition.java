@@ -25,6 +25,7 @@ import net.serenitybdd.screenplay.actors.OnStage;
 import net.serenitybdd.screenplay.actors.OnlineCast;
 import org.openqa.selenium.WebDriver;
 
+import static co.edu.udea.certificacion.taller.shopping.userinterfaces.ProductsPage.CONTINUE_SHOPPING_BUTTON;
 import static org.hamcrest.Matchers.equalTo;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -67,8 +68,6 @@ public class AddProductsStepDefinition {
     @Given("I am in the products page")
     public void iAmInTheProductsPage() {
         client.attemptsTo(NavigateTo.productsPage());
-
-
     }
 
     @When("I add {int} different products to cart")
@@ -79,12 +78,13 @@ public class AddProductsStepDefinition {
             WebElementFacade product = RandomValues.randomItem(buttons);
 
             client.attemptsTo(Click.on(product));
+            client.attemptsTo(Click.on(CONTINUE_SHOPPING_BUTTON));
 
             buttons.remove(product);
         }
     }
 
-    @Then("Then I can see the {int} different products in the cart")
+    @Then("I can see the {int} different products in the cart")
     public void thenICanSeeTheQuantityDifferentProductsInTheCart(int quantity){
         client.attemptsTo(NavigateTo.shoppingCart());
 

@@ -9,10 +9,10 @@ Feature: I as an user, want to add products to the cart to can buy
         Then I can see the <quantity> different products in the cart
 
     Examples:
-        |<quantity>|
-        |1         |
-        |3         |
-        |5         |
+        |quantity|
+        |1       |
+        |3       |
+        |5       |
 
     Scenario Outline: Modify the quantity for a product
         Given I have selected a product
