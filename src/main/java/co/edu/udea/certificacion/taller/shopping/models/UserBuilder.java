@@ -13,20 +13,25 @@ public class UserBuilder {
         user = new User();
         // Set up basic information
         user.setAddress(RandomValues.randomAddress());
-        if (Math.random() < 0.5){
+        if (Math.random() < 0.5) {
             user.setAddress2(RandomValues.randomAddress());
         }
 
-        if (Math.random() < 0.5){
+        if (Math.random() < 0.5) {
             user.setCompanyName(RandomValues.randomCompany());
         }
 
+        user.setGender(RandomValues.randomGender());
+        user.setFirstName(RandomValues.randomName(user.getGender()));
+        user.setLastName(RandomValues.randomLastName());
         user.setMobileNumber(RandomValues.randomMobilePhone());
         user.setLocationData(Location.randomLocation());
         user.setSignUpForNewsLetter(RandomValues.randomBooleanValue());
         user.setSpecialOffers(RandomValues.randomBooleanValue());
         user.setZipCode(RandomValues.randomZipCode());
+        user.setDateOfBirth(RandomValues.randomBirthDate());
 
+        user.setEmail(RandomValues.randomEmail(user.getFirstName()));
     }
 
     public static UserBuilder defaultUser() {
@@ -35,7 +40,6 @@ public class UserBuilder {
 
     public UserBuilder withFirstName(String firstName){
         user.setFirstName(firstName);
-        user.setEmail(RandomValues.randomEmail(firstName));
         return this;
     }
 
@@ -58,6 +62,11 @@ public class UserBuilder {
         if(dateOfBirth != null){
             user.setDateOfBirth(dateOfBirth);
         }
+        return this;
+    }
+
+    public UserBuilder withEmail(String email){
+        user.setEmail(email);
         return this;
     }
 
