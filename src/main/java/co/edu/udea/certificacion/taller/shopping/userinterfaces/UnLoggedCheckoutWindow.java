@@ -6,6 +6,10 @@ import net.serenitybdd.screenplay.targets.Target;
 
 public class UnLoggedCheckoutWindow extends PageObject {
 
+    public static final Target REGISTER_LOGIN_TEXT = Target.the(
+        "Message indicating we must register to can buy")
+        .locatedBy("//*[@id=\"checkoutModal\"]/div/div/div[2]/p[1]");
+
     public static final Target CONTINUE_ON_CART = Target.the(
         "Button to remain in the cart page")
         .locatedBy("//*[@id=\"checkoutModal\"]/div/div/div[3]/button");

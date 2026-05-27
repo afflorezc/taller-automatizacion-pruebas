@@ -4,6 +4,8 @@ import static co.edu.udea.certificacion.taller.shopping.userinterfaces.HomePage.
 import static co.edu.udea.certificacion.taller.shopping.userinterfaces.SignUpLoginPage.*;
 import static co.edu.udea.certificacion.taller.shopping.userinterfaces.ProductsPage.*;
 import static co.edu.udea.certificacion.taller.shopping.userinterfaces.ShoppingCartPage.*;
+import static co.edu.udea.certificacion.taller.shopping.userinterfaces.CheckoutPage.*;
+import static co.edu.udea.certificacion.taller.shopping.userinterfaces.PaymentPage.*;
 
 import co.edu.udea.certificacion.taller.shopping.interactions.RemoveInteractions;
 
@@ -58,4 +60,15 @@ public class NavigateTo implements Task{
         return Tasks.instrumented(NavigateTo.class);
     }
 
+    public static NavigateTo chekoutPage(){
+        link = CHECKOUT_BUTTON;
+        testField = CHECKOUK_TITLE_TEXT;
+        return Tasks.instrumented(NavigateTo.class);
+    }
+
+    public static NavigateTo paymentPage(){
+        link = PLACE_ORDER_BUTTON;
+        testField = CARD_NAME_INPUT;
+        return Tasks.instrumented(NavigateTo.class);
+    }
 }

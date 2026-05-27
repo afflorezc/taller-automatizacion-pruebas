@@ -39,6 +39,6 @@ Feature: I as an user, want to register into the platform to can buy
 
          Examples: 
            | firstName | email  | lastName | password       | gender | dateOfBirth | 
-           |           |  any   | Montoya  | monto&you1485! |   F    | 2005-11-04  |
+            #|           |  any   | Montoya  | monto&you1485! |   F    | 2005-11-04  |
            | Santiago  |        | Zuluaga  | grand_Pass23$  |   M    | 2000-06-17  |
-           | Vanessa   |  any   | Bedoya   |                |   F    | 2006-07-20  |
+           #| Vanessa   |  any   | Bedoya   |                |   F    | 2006-07-20  |

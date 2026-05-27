@@ -6,8 +6,8 @@ import org.junit.runner.RunWith;
 
 @RunWith(CucumberWithSerenity.class)
 @CucumberOptions(
-        features = "src/test/resources/features/register_user.feature",
-        glue = "co.edu.udea.certificacion.taller.stepdefinitions",
+        features = "src/test/resources/features/checkout.feature",
+        glue = "co.edu.udea.certificacion.taller.shopping.stepdefinitions",
         snippets = CucumberOptions.SnippetType.CAMELCASE
 )
 public class CheckoutRunner {}

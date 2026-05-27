@@ -90,4 +90,9 @@ public class RandomValues {
         return UUID.randomUUID().toString().substring(0,8);
     }
 
+    public static int randomNumber(){
+        ThreadLocalRandom random = ThreadLocalRandom.current();
+        return random.nextInt(1,5);
+    }
+
 }
